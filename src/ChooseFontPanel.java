@@ -3,42 +3,47 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * This class creates a Panel which contains 3 awt.List components
+ * <p>
+ * This class creates a Panel which contains 3 awt.List components.
+ * </p>
  * That lists set up awt.Font for the TextPanel class
- * @see TextPanel
- * @since 1.0
- * @author NVPEB
  */
 public class ChooseFontPanel{
+    /**
+     * fontName, fontSize, fontAngle - private fields that update when user use ChooseFontPanel
+     * @see ChooseFontPanel
+     */
     private static String fontName = "Agency FB";
     private static int fontSize = 12;
     private static int fontAngle = 0;
-    private static Font chosenFont = new Font(fontName,fontAngle,fontSize);
+
+    /**
+     * awt.List's to update font's name, angle and size
+     *
+     */
     private static List fontList;
     private static List fontTypeList;
     private static List fontSizeList;
+
+    /**
+     * Getter that returns all 3 awt.List that ChooseFontPanel makes
+     * @return List array that contains fontList, fontTypeList, fontSizeList
+     * @see ChooseFontPanel
+     */
     public static List[] getFontPanel(){
         return new List[] {fontList,fontTypeList,fontSizeList};
     }
 
-    public static List getFontList(){
-        return fontList;
-    }
-    public static List getFontTypeList(){
-        return fontTypeList;
-    }
-    public static List getFontSizeList(){
-        return fontSizeList;
-    }
     public static Font getFont(){
-        return chosenFont;
+        return new Font(fontName, fontAngle, fontSize);
     }
-    ChooseFontPanel() {
 
+    ChooseFontPanel() {
         fontList = new List(267,false);
-        String fontArray[] =
+        String[] fontArray =
                 GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-        for(String item : fontArray) fontList.add(item);
+        for (String item : fontArray)
+            fontList.add(item);
 
         fontList.setBounds(10,
                 MainWindow.getHeight()/3,
@@ -49,13 +54,9 @@ public class ChooseFontPanel{
         fontList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.print(fontName+"->");
                 fontName = fontList.getSelectedItem();
-                chosenFont = new Font(fontName,fontAngle,fontSize);
+                Font chosenFont = new Font(fontName,fontAngle,fontSize);
                 MainWindow.setFont(chosenFont);
-
-                //System.out.println(fontName);
-                //System.out.println(chosenfont.getFontName());
             }
         });
 
@@ -72,12 +73,9 @@ public class ChooseFontPanel{
         fontTypeList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.print(fontAngle+"->");
                 fontAngle = fontTypeList.getSelectedIndex();
-                chosenFont = new Font(fontName,fontAngle,fontSize);
+                Font chosenFont = new Font(fontName,fontAngle,fontSize);
                 MainWindow.setFont(chosenFont);
-                //System.out.println(fontAngle);
-
             }
         });
 
@@ -95,12 +93,9 @@ public class ChooseFontPanel{
         fontSizeList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println(fontSizeList.getSelectedItem());
-                //System.out.print(fontSize+"->");
                 fontSize = Integer.parseInt(fontSizeList.getSelectedItem());
-                chosenFont = new Font(fontName,fontAngle,fontSize);
+                Font chosenFont = new Font(fontName,fontAngle,fontSize);
                 MainWindow.setFont(chosenFont);
-                //System.out.println(fontSize);
             }
         });
     }

@@ -16,10 +16,6 @@ public class MainWindow/*extends Font */{
         return width;
     }
 
-    /**
-     * TODO: Переписать для устранения XSS уязвимости
-     * @param font
-     */
     public static void setFont(Font font){
         label.setFont(font);
         main_window.repaint();

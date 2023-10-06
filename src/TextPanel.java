@@ -2,13 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * sdfsdfdsf
- * TODO: 123
- * @since 1.0
- * @author Егор
- * @see ChooseFontPanel
- */
+
 public class TextPanel {
     private static TextField TextInputField;
 
