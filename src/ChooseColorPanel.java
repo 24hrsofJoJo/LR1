@@ -3,9 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class ChooseColorPanel{
-    private static Panel chooseColorPanel;
+    private static Panel chooseColorPanel = new Panel();
     private static Button TextColor;
     private static Button BGColor;
+    static Panel voidPanel1 = new Panel();
+    static Panel voidPanel2 = new Panel();
     private static CheckboxGroup cbg;
     private static Checkbox fromTextPanel;
     private static Checkbox fontName;
@@ -16,12 +18,14 @@ class ChooseColorPanel{
 
     private static Panel[] createChooseWorkPanel(){
         TextColor = new Button("Text Color");
+        TextColor.addActionListener(e -> {
+            choice = 0;
+            ColorOf.setText("Text Color");
+        });
         BGColor = new Button("BG Color");
         BGColor.addActionListener(e -> {
-            System.out.println("BG COLOR");
             choice = 1;
-            createChooseColorPanel();
-            MainWindow.rep();
+            ColorOf.setText("BG Color");
         });
         cbg = new CheckboxGroup();
         fromTextPanel = new Checkbox("From Panel", cbg, true);
@@ -64,14 +68,8 @@ class ChooseColorPanel{
     }
 
     public static void createChooseColorPanel() {
-        chooseColorPanel = new Panel();
+
         chooseColorPanel.setLayout(new GridLayout(0,5));
-
-
-
-        Panel voidPanel1 = new Panel();
-        Panel voidPanel2 = new Panel();
-
 
         Panel[] arr = createChooseWorkPanel();
         chooseColorPanel.add(arr[0]);

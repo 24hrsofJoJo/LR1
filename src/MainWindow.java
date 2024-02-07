@@ -30,6 +30,7 @@ public class MainWindow {
     //TODO: Заменить label на TextPanel в методе setFont
     public static void setFont(Font font){
         main_window.revalidate();
+        main_window.repaint();
     }
     public static void rep(){
 
