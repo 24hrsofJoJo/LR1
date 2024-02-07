@@ -10,13 +10,8 @@ import java.awt.*;
  */
 public class ChooseFontPanel {
 
-    /**
-     * fontName, fontSize, fontAngle - private fields that update when user use ChooseFontPanel
-     * @see ChooseFontPanel
-     * @see #fontList
-     * @see #fontTypeList
-     * @see #fontSizeList
-     */
+
+    //fontName, fontSize, fontAngle - private fields that update when user use ChooseFontPanel
     private static String fontName = "Agency FB";
     private static int fontSize = 12;
     private static int fontAngle = 0;
@@ -27,7 +22,6 @@ public class ChooseFontPanel {
     private static List fontSizeList;
 
     /**
-     * Getter that returns all 3 awt.List that ChooseFontPanel creates
      * @return List array that contains fontList, fontTypeList, fontSizeList
      * @see #fontList
      * @see #fontTypeList
@@ -52,7 +46,6 @@ public class ChooseFontPanel {
     public static void createChooseFontPanel() {
         chooseFontPanel = new Panel();
         chooseFontPanel.setLayout(new GridLayout());
-        //chooseFontPanel.setSize(MainWindow.getWidth(),MainWindow.getHeight()/3);
 
         chooseFontPanel.setLocation(
                 10,
