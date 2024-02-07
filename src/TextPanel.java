@@ -1,25 +1,39 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+class TextPanel extends Panel{
+    private static Graphics TextPanel;
+    private static final TextField TextField = new TextField();
+    private static Panel panel = new Panel();
+    {
 
-public class TextPanel {
-    private static TextField TextInputField;
-
-    public static TextField getTextInputField() {
-        return TextInputField;
+    }
+    public static Panel getGraph(){
+        return panel;
+    }
+    public static TextField getTextPanel(){
+        return TextField;
     }
     TextPanel(){
-        TextInputField = new TextField();
-        TextInputField.setBounds(10,
-                MainWindow.getHeight()/3*2,
-                MainWindow.getWidth()-10,
-                20);
-        TextInputField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(TextInputField.getText());
-            }
+        panel.setBackground(Color.black);
+        Font font = ChooseFontPanel.getFont();
+        setFont(font);
+        repaint();
+        TextPanel = getGraphics();
+        TextField.setSize(MainWindow.getWidth(),
+                20
+        );
+        //TextField.setLocation(10,MainWindow.getHeight()/3*2);
+        TextField.addActionListener(e->{
+            System.out.println(TextField.getText());
+            panel = new Panel();
         });
+
+    }
+
+    public void paint(Graphics g) {
+        System.out.println("Got text: "+ TextField.getText());
+        g.drawString(TextField.getText(), panel.getWidth()/5, panel.getHeight()/2);
     }
 }
+
+
