@@ -2,7 +2,7 @@ import java.awt.*;
 
 
 class DrawPanel extends Panel {
-    int a;
+
     public static Color BGColor = Color.CYAN;
     public static Color TextColor = Color.black;
     public static String Text = "Java";

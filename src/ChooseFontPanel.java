@@ -9,7 +9,6 @@ import java.awt.*;
  * @see TextPanel
  */
 public class ChooseFontPanel {
-    int a;
 
     /**
      * Private field that updates font family of TextPanel (default - Agency FB)
