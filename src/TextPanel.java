@@ -62,7 +62,7 @@ class DrawPanel extends Panel {
 
 /**
  * This class is used to add Scrollbars and TextFields to Graphics obtained from DrawPanel.
- * The principle of operation is described in the javadoc of the DrawPanel class.
+ * The principle of its operation is described in the javadoc of the DrawPanel class.
  * @see DrawPanel
  * @see Graphics
  * @see Scrollbar
