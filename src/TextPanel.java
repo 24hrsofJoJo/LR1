@@ -33,7 +33,7 @@ class TextPanel{
         Button button = new Button("sjadbfkasd");
         panel.add(button, BorderLayout.NORTH);
 
-        panel.add(new TextPanel().getTextPanel(), BorderLayout.CENTER);
+        panel.add(new DrawPanel().getDrawPanel(), BorderLayout.CENTER);
     }
 }
 
