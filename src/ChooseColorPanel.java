@@ -13,6 +13,8 @@ import java.util.Arrays;
 class ChooseColorPanel {
 
     private static final Panel chooseColorPanel = new Panel();
+    int a;
+
     static Panel voidPanel1 = new Panel();
     static Panel voidPanel2 = new Panel();
     static ArrayList<Color> arr = new ArrayList<>();

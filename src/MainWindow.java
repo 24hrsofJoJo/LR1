@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
  * @see TextPanel
  */
 public class MainWindow {
-
+    int a;
     private static int height;
     private static int width;
 
