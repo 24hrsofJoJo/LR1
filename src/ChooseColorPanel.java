@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This class implements a panel containing components
@@ -7,21 +10,44 @@ import java.awt.*;
  * @see ChooseFontPanel
  * @see TextPanel
  */
-class ChooseColorPanel{
+class ChooseColorPanel {
+
     private static final Panel chooseColorPanel = new Panel();
     static Panel voidPanel1 = new Panel();
     static Panel voidPanel2 = new Panel();
-    private static final Color[] ColorArray = {Color.black, Color.cyan};
+    static ArrayList<Color> arr = new ArrayList<>();
+    static Color[] ColorArray = new Color[13];
     private static Checkbox fromTextPanel;
     private static Checkbox fontName;
     private static Label ColorOf = new Label("Text Color", Label.CENTER);
-    private static Choice ColorList;
+    private static final Choice ColorList = new Choice();
     private static int choice = 0;
     private static int chosenCheckbox = 0;
+    static {
+        int i = 0;
+        for (Field f : Color.class.getFields()) {
+            if (f.getType() == Color.class) {
+                Color c;
+                try {
+                    c = (Color) f.get(null);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+                if (i%2==0) {
+                    arr.add(c);
+                    ColorList.add(f.toString().substring(50));
+                }
+                i++;
+            }
+        }
+        for (int j=0; j<arr.size();j++)
+            ColorArray[j] = arr.get(j);
 
+    }
     public static Choice getColorList(){
         return ColorList;
     }
+
 
     public static Checkbox[] getCheckBoxes(){
         return new Checkbox[]{fromTextPanel,fontName};
@@ -42,12 +68,16 @@ class ChooseColorPanel{
         textColor.addActionListener(e -> {
             choice = 0;
             ColorOf.setText("Text Color");
+            ArrayList<Color> arr = new ArrayList<>(Arrays.asList(ColorArray));
+            ColorList.select(arr.indexOf(DrawPanel.TextColor));
         });
 
         Button BGColor = new Button("BG Color");
         BGColor.addActionListener(e -> {
             choice = 1;
             ColorOf.setText("BG Color");
+            ArrayList<Color> arr = new ArrayList<>(Arrays.asList(ColorArray));
+            ColorList.select(arr.indexOf(DrawPanel.BGColor));
         });
 
         CheckboxGroup cbg = new CheckboxGroup();
@@ -84,12 +114,10 @@ class ChooseColorPanel{
      * @see #createChooseColorPanel()
      */
     private static Panel createColorChoosePanel(){
+
         Panel ChooseColor = new Panel();
         ChooseColor.setLayout(new GridLayout(3,0));
 
-        ColorList = new Choice();
-        ColorList.add("Black");
-        ColorList.add("Cyan");
         ColorList.addItemListener(e->{
             if (choice==0)
                 DrawPanel.TextColor = ColorArray[ColorList.getSelectedIndex()];
@@ -115,7 +143,6 @@ class ChooseColorPanel{
      * @see MainWindow
      */
     public static void createChooseColorPanel() {
-
         chooseColorPanel.setLayout(new GridLayout(0,5));
 
         Panel[] arr = createChooseWorkPanel();
