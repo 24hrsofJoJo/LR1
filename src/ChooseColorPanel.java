@@ -8,17 +8,28 @@ import java.awt.*;
  * @see TextPanel
  */
 class ChooseColorPanel{
-    private static Panel chooseColorPanel = new Panel();
-    private static Button TextColor;
-    private static Button BGColor;
+    private static final Panel chooseColorPanel = new Panel();
     static Panel voidPanel1 = new Panel();
     static Panel voidPanel2 = new Panel();
-    private static CheckboxGroup cbg;
+    private static final Color[] ColorArray = {Color.black, Color.cyan};
     private static Checkbox fromTextPanel;
     private static Checkbox fontName;
     private static Label ColorOf = new Label("Text Color", Label.CENTER);
     private static Choice ColorList;
     private static int choice = 0;
+    private static int chosenCheckbox = 0;
+
+    public static Choice getColorList(){
+        return ColorList;
+    }
+
+    public static Checkbox[] getCheckBoxes(){
+        return new Checkbox[]{fromTextPanel,fontName};
+    }
+
+    public static int getChosenCheckbox(){
+        return chosenCheckbox;
+    }
 
     /**
      * @return An array containing 2 panels with buttons and checkboxes that allow you to customize the logic of the ColorList
@@ -27,25 +38,33 @@ class ChooseColorPanel{
      */
     private static Panel[] createChooseWorkPanel(){
 
-        TextColor = new Button("Text Color");
-        TextColor.addActionListener(e -> {
+        Button textColor = new Button("Text Color");
+        textColor.addActionListener(e -> {
             choice = 0;
             ColorOf.setText("Text Color");
         });
 
-        BGColor = new Button("BG Color");
+        Button BGColor = new Button("BG Color");
         BGColor.addActionListener(e -> {
             choice = 1;
             ColorOf.setText("BG Color");
         });
 
-        cbg = new CheckboxGroup();
+        CheckboxGroup cbg = new CheckboxGroup();
         fromTextPanel = new Checkbox("From Panel", cbg, true);
         fontName = new Checkbox("Font name", cbg, false);
+        fontName.addItemListener(e-> {
+            chosenCheckbox = 1;
+            DrawPanel.Text = ChooseFontPanel.getFont().getFontName();
+        });
+        fromTextPanel.addItemListener(e-> {
+            chosenCheckbox = 0;
+            DrawPanel.Text = TextPanel.textField.getText();
+        });
 
         Panel TextVariant = new Panel();
         TextVariant.setLayout(new GridLayout(2,0));
-        TextVariant.add(TextColor);
+        TextVariant.add(textColor);
         TextVariant.add(fromTextPanel);
 
         Panel NamesVariant = new Panel();
@@ -71,6 +90,13 @@ class ChooseColorPanel{
         ColorList = new Choice();
         ColorList.add("Black");
         ColorList.add("Cyan");
+        ColorList.addItemListener(e->{
+            if (choice==0)
+                DrawPanel.TextColor = ColorArray[ColorList.getSelectedIndex()];
+            else
+                DrawPanel.BGColor = ColorArray[ColorList.getSelectedIndex()];
+        });
+
         Panel voidPanel = new Panel();
         ColorOf = new Label((choice==0)?"Text Color":"BG Color", Label.CENTER);
         ChooseColor.add(ColorOf);

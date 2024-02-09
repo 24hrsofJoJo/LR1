@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 /**
@@ -9,15 +11,14 @@ import java.awt.*;
  */
 public class MainWindow {
 
-    private static Frame main_window;
     private static int height;
     private static int width;
 
+    public static int getWidth() {
+        return width;
+    }
     public static int getHeight(){
         return height;
-    }
-    public static int getWidth(){
-        return width;
     }
 
     public static void setHeight(int val){
@@ -27,10 +28,6 @@ public class MainWindow {
         width = val;
     }
 
-    public static void setFont(Font font){
-        main_window.revalidate();
-        main_window.repaint();
-    }
 
     /**
      * <p>Creates window width X height</p>
@@ -43,8 +40,12 @@ public class MainWindow {
      */
     public static void setMainWindow(int width, int height){
 
-        main_window = new Frame();
-        new TextPanel();
+        Frame main_window = new Frame();
+        main_window.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                System.exit(0);
+            }
+        });
 
         setHeight(height);
         setWidth(width);
@@ -54,13 +55,11 @@ public class MainWindow {
 
         ChooseFontPanel.createChooseFontPanel();
         ChooseColorPanel.createChooseColorPanel();
-
+        TextPanel.createTextPanel();
 
         main_window.add(ChooseColorPanel.getChooseColorPanel());
         main_window.add(ChooseFontPanel.getFontPanel());
-        TextPanel a = new TextPanel();
-        a.setTextPanel();
-        main_window.add(a.getThird());
+        main_window.add(TextPanel.getTextPanel());
 
         main_window.setVisible(true);
     }

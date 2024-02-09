@@ -45,16 +45,21 @@ public class ChooseFontPanel {
      * @see #fontTypeList
      * @see #fontSizeList
      */
-
-    public static Panel getFontPanel(){
-        return chooseFontPanel;
-    }
     public static List[] getFontLists(){
         return new List[] {fontList,fontTypeList,fontSizeList,};
     }
 
+    public static Panel getFontPanel(){
+        return chooseFontPanel;
+    }
+
+
     public static Font getFont(){
-        return new Font(fontName, fontAngle, fontSize);
+        switch (fontAngle){
+            case 1-> {return new Font(fontName, Font.BOLD, fontSize);}
+            case 2-> {return new Font(fontName, Font.ITALIC, fontSize);}
+            default -> {return new Font(fontName, Font.PLAIN, fontSize);}
+        }
     }
 
     /**
@@ -79,23 +84,14 @@ public class ChooseFontPanel {
             fontList.add(item);
 
         fontList.select(0);
-        fontList.addActionListener(e -> {
-            fontName = fontList.getSelectedItem();
-            Font chosenFont = new Font(fontName,fontAngle,fontSize);
-            MainWindow.setFont(chosenFont);
-            System.out.println(chosenFont.getFontName());
-        });
+        fontList.addActionListener(e -> fontName = fontList.getSelectedItem());
 
         fontTypeList = new List(3,false);
         fontTypeList.add("Plain");
         fontTypeList.add("Bold");
         fontTypeList.add("Italic");
         fontTypeList.select(0);
-        fontTypeList.addActionListener(e -> {
-            fontAngle = fontTypeList.getSelectedIndex();
-            Font chosenFont = new Font(fontName,fontAngle,fontSize);
-            MainWindow.setFont(chosenFont);
-        });
+        fontTypeList.addActionListener(e -> fontAngle = fontTypeList.getSelectedIndex());
 
         fontSizeList = new List(40,false);
         for(int i=2;i<=80;i+=2){
@@ -103,11 +99,7 @@ public class ChooseFontPanel {
         }
         fontSizeList.select(5);
 
-        fontSizeList.addActionListener(e -> {
-            fontSize = Integer.parseInt(fontSizeList.getSelectedItem());
-            Font chosenFont = new Font(fontName,fontAngle,fontSize);
-            MainWindow.setFont(chosenFont);
-        });
+        fontSizeList.addActionListener(e -> fontSize = Integer.parseInt(fontSizeList.getSelectedItem()));
         chooseFontPanel.add(fontList);
         chooseFontPanel.add(fontTypeList);
         chooseFontPanel.add(fontSizeList);

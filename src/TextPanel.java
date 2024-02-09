@@ -1,8 +1,13 @@
 import java.awt.*;
 
+
 class DrawPanel extends Panel {
 
-    public static Color a = Color.cyan;
+    public static Color BGColor = Color.CYAN;
+    public static Color TextColor = Color.black;
+    public static String Text = "Java";
+    public static int x = 75;
+    public static int y = 30;
 
     public Panel getDrawPanel(){
         return this;
@@ -10,39 +15,58 @@ class DrawPanel extends Panel {
 
     public void setActionListeners(){
         List[] array = ChooseFontPanel.getFontLists();
-        array[0].addActionListener(e->{
-            a = Color.magenta;
-            repaint();
-        });
+        for (List i: array)
+            i.addActionListener(e-> repaint());
+        Choice choice = ChooseColorPanel.getColorList();
+        choice.addItemListener(e-> repaint());
+        Checkbox[] arr = ChooseColorPanel.getCheckBoxes();
+        for (Checkbox i: arr)
+            i.addItemListener(e-> repaint());
+        TextPanel.textField.addActionListener(e-> repaint());
+        Scrollbar[] ScArray = TextPanel.getScrollbars();
+        for (Scrollbar i: ScArray)
+            i.addAdjustmentListener(e-> repaint());
     }
     @Override
     public void paint(Graphics g){
         setActionListeners();
         super.paint(g);
-        g.setColor(a);
-        g.fillRect(0,0,400,133);
-        g.setColor(Color.black);
-        g.drawString("Hello",75,30);
-
+        g.setColor(BGColor);
+        g.fillRect(0,0,MainWindow.getWidth(),MainWindow.getHeight()/3);
+        g.setColor(TextColor);
+        g.setFont(ChooseFontPanel.getFont());
+        g.drawString(Text,x,y);
     }
 }
 
 class TextPanel{
-    private Panel panel = new Panel();
+    private static final Panel panel = new Panel();
+    public static TextField textField = new TextField();
+    private static Scrollbar scVert;
+    private static Scrollbar scHor;
 
-    public Panel getThird(){
+    public static Panel getTextPanel(){
         return panel;
     }
 
-    public void setTextPanel(){
+    public static Scrollbar[] getScrollbars(){
+        return new Scrollbar[]{scVert,scHor};
+    }
+
+    public static void createTextPanel(){
         panel.setLayout(new BorderLayout());
 
-        Scrollbar scVert = new Scrollbar(Scrollbar.VERTICAL,1000,0,0,2000);
-        Scrollbar scHor = new Scrollbar(Scrollbar.HORIZONTAL,1000,0,0,2000);
+        scVert = new Scrollbar(Scrollbar.VERTICAL,100,0,0,300);
+        scHor = new Scrollbar(Scrollbar.HORIZONTAL,0,0,0,600);
 
-        TextField textField = new TextField();
+        scVert.addAdjustmentListener(e-> DrawPanel.y = scVert.getValue());
+        scHor.addAdjustmentListener(e-> DrawPanel.x = scHor.getValue());
         textField.setText("Java");
-
+        textField.addActionListener(e->{
+            if (ChooseColorPanel.getChosenCheckbox()==0){
+                DrawPanel.Text = textField.getText();
+            }
+        });
 
         panel.add(scVert, BorderLayout.WEST);
         panel.add(scHor, BorderLayout.SOUTH);
