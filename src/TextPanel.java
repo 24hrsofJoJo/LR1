@@ -1,9 +1,9 @@
 import java.awt.*;
 
-class TextPanel extends Panel {
+class DrawPanel extends Panel {
 
 
-    public Panel getTextPanel(){
+    public Panel getDrawPanel(){
         return this;
     }
     @Override
@@ -16,7 +16,7 @@ class TextPanel extends Panel {
     }
 }
 
-class Third{
+class TextPanel{
     Scrollbar scVert = new Scrollbar(Scrollbar.VERTICAL,0,10,0,4000);
     private Panel panel = new Panel();
 
