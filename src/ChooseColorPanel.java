@@ -9,6 +9,7 @@ import java.util.Arrays;
  * as well as choose where the text for the TextPanel comes from
  * @see ChooseFontPanel
  * @see TextPanel
+ * @see Panel
  */
 class ChooseColorPanel {
 
@@ -62,6 +63,7 @@ class ChooseColorPanel {
      * @return An array containing 2 panels with buttons and checkboxes that allow you to customize the logic of the ColorList
      * @see #createChooseColorPanel()
      * @see #createColorChoosePanel()
+     * @see Panel
      */
     private static Panel[] createChooseWorkPanel(){
 
@@ -113,6 +115,7 @@ class ChooseColorPanel {
      * @return Panel, containing ColorList, that allow you to customize BG and text color
      * @see #createChooseWorkPanel()
      * @see #createChooseColorPanel()
+     * @see Panel
      */
     private static Panel createColorChoosePanel(){
 
@@ -142,6 +145,7 @@ class ChooseColorPanel {
      * @see #createChooseWorkPanel()
      * @see #createColorChoosePanel()
      * @see MainWindow
+     * @see Panel
      */
     public static void createChooseColorPanel() {
         chooseColorPanel.setLayout(new GridLayout(0,5));

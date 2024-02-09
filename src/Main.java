@@ -9,6 +9,5 @@ public class Main {
         int height = sc.nextInt();
         MainWindow.setMainWindow(width, height);
     }
-
 }
 
