@@ -1,39 +1,28 @@
 import java.awt.*;
 
-class TextPanel extends Panel{
-    private static Graphics TextPanel;
-    private static final TextField TextField = new TextField();
-    private static Panel panel = new Panel();
-    {
+class TextPanel extends Panel {
 
+    Scrollbar scVert = new Scrollbar(Scrollbar.VERTICAL,0,10,0,4000);
+
+    public Panel getTextPanel(){
+        return this;
     }
-    public static Panel getGraph(){
-        return panel;
-    }
-    public static TextField getTextPanel(){
-        return TextField;
-    }
-    TextPanel(){
-        panel.setBackground(Color.black);
-        Font font = ChooseFontPanel.getFont();
-        setFont(font);
-        repaint();
-        TextPanel = getGraphics();
-        TextField.setSize(MainWindow.getWidth(),
-                20
-        );
-        //TextField.setLocation(10,MainWindow.getHeight()/3*2);
-        TextField.addActionListener(e->{
-            System.out.println(TextField.getText());
-            panel = new Panel();
-        });
+    @Override
+    public void paint(Graphics g){
+        this.setLayout(new BorderLayout());
+
+        super.paint(g);
+
+        scVert.setLocation(10,10);
+        this.add(scVert, BorderLayout.WEST);
+
+        Button button = new Button("sjadbfkasd");
+        this.add(button, BorderLayout.NORTH);
+        g.drawString("Hello",100,100);
+
 
     }
 
-    public void paint(Graphics g) {
-        System.out.println("Got text: "+ TextField.getText());
-        g.drawString(TextField.getText(), panel.getWidth()/5, panel.getHeight()/2);
-    }
 }
 
 
