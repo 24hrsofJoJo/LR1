@@ -57,8 +57,9 @@ public class MainWindow {
 
         main_window.add(ChooseColorPanel.getChooseColorPanel());
         main_window.add(ChooseFontPanel.getFontPanel());
-        TextPanel a = new TextPanel();
-        main_window.add(a.getTextPanel());
+        Third a = new Third();
+        a.suka();
+        main_window.add(a.getThird());
 
         main_window.setVisible(true);
     }
