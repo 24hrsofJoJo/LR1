@@ -1,6 +1,15 @@
 import java.awt.*;
 
-
+/**
+ * A panel that creates a graphical environment (Graphics) for executing the drawString method. Takes
+ * information about the font and colors of the text and background from the ChooseFontPanel and
+ * ChooseColorPanel classes, respectively. Used further in the TextPanel class
+ * @see TextPanel
+ * @see ChooseColorPanel
+ * @see ChooseFontPanel
+ * @see Panel
+ * @see Graphics
+ */
 class DrawPanel extends Panel {
 
     public static Color BGColor = Color.CYAN;
@@ -13,6 +22,18 @@ class DrawPanel extends Panel {
         return this;
     }
 
+    /**
+     * This method allows you to add a repaint() function to the ActionListeners of various components
+     * of the ChooseFontPanel and ChooseColorPanel classes. This function is necessary to update Graphics
+     * after updating attributes (colors and fonts)
+     * @see ChooseFontPanel
+     * @see ChooseColorPanel
+     * @see #repaint()
+     * @see Font
+     * @see java.awt.event.ActionListener
+     * @see Graphics
+     *
+     */
     public void setActionListeners(){
         List[] array = ChooseFontPanel.getFontLists();
         for (List i: array)
@@ -39,6 +60,14 @@ class DrawPanel extends Panel {
     }
 }
 
+/**
+ * This class is used to add Scrollbars and TextFields to Graphics obtained from DrawPanel.
+ * The principle of operation is described in the javadoc of the DrawPanel class.
+ * @see DrawPanel
+ * @see Graphics
+ * @see Scrollbar
+ * @see TextField
+ */
 class TextPanel{
     private static final Panel panel = new Panel();
     public static TextField textField = new TextField();
@@ -74,5 +103,3 @@ class TextPanel{
         panel.add(new DrawPanel().getDrawPanel(), BorderLayout.CENTER);
     }
 }
-
-

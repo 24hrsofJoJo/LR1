@@ -7,6 +7,7 @@ import java.awt.*;
  * That lists set up awt.Font for the TextPanel class
  * @see ChooseColorPanel
  * @see TextPanel
+ * @see List
  */
 public class ChooseFontPanel {
 
@@ -15,6 +16,7 @@ public class ChooseFontPanel {
      * @see TextPanel
      * @see #fontSize
      * @see #fontAngle
+     * @see Font
      */
     private static String fontName = "Agency FB";
 
@@ -23,6 +25,7 @@ public class ChooseFontPanel {
      * @see TextPanel
      * @see #fontName
      * @see #fontAngle
+     * @see Font
      */
     private static int fontSize = 12;
 
@@ -31,6 +34,7 @@ public class ChooseFontPanel {
      * @see TextPanel
      * @see #fontName
      * @see #fontSize
+     * @see Font
      */
     private static int fontAngle = 0;
 
@@ -44,6 +48,7 @@ public class ChooseFontPanel {
      * @see #fontList
      * @see #fontTypeList
      * @see #fontSizeList
+     * @see List
      */
     public static List[] getFontLists(){
         return new List[] {fontList,fontTypeList,fontSizeList,};
@@ -68,6 +73,9 @@ public class ChooseFontPanel {
      * @see #fontList
      * @see #fontTypeList
      * @see #fontSizeList
+     * @see Panel
+     * @see List
+     * @see Font
      */
     public static void createChooseFontPanel() {
         chooseFontPanel = new Panel();

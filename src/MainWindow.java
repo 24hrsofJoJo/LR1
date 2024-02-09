@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
  * @see ChooseColorPanel
  * @see ChooseFontPanel
  * @see TextPanel
+ * @see Frame
  */
 public class MainWindow {
 
@@ -28,15 +29,15 @@ public class MainWindow {
         width = val;
     }
 
-
     /**
-     * <p>Creates window width X height</p>
+     * <p>Creates awt.Frame width X height</p>
      * This window contains ChooseFontPanel, ChooseColorPanel, TextPanel
      * @param width width of the window (int)
      * @param height height of the window (int)
      * @see ChooseColorPanel
      * @see ChooseFontPanel
      * @see TextPanel
+     * @see Frame
      */
     public static void setMainWindow(int width, int height){
 
