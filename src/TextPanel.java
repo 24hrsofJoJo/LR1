@@ -1,38 +1,53 @@
 import java.awt.*;
 
-class TextPanel extends Panel{
-    private static Graphics TextPanel;
-    private static final TextField TextField = new TextField();
-    private static Panel panel = new Panel();
-    {
+class DrawPanel extends Panel {
+
+    public static Color a = Color.cyan;
+
+    public Panel getDrawPanel(){
+        return this;
+    }
+
+    public void setActionListeners(){
+        List[] array = ChooseFontPanel.getFontLists();
+        array[0].addActionListener(e->{
+            a = Color.magenta;
+            repaint();
+        });
+    }
+    @Override
+    public void paint(Graphics g){
+        setActionListeners();
+        super.paint(g);
+        g.setColor(a);
+        g.fillRect(0,0,400,133);
+        g.setColor(Color.black);
+        g.drawString("Hello",75,30);
 
     }
-    public static Panel getGraph(){
+}
+
+class TextPanel{
+    private Panel panel = new Panel();
+
+    public Panel getThird(){
         return panel;
     }
-    public static TextField getTextPanel(){
-        return TextField;
-    }
-    TextPanel(){
-        panel.setBackground(Color.black);
-        Font font = ChooseFontPanel.getFont();
-        setFont(font);
-        repaint();
-        TextPanel = getGraphics();
-        TextField.setSize(MainWindow.getWidth(),
-                20
-        );
-        //TextField.setLocation(10,MainWindow.getHeight()/3*2);
-        TextField.addActionListener(e->{
-            System.out.println(TextField.getText());
-            panel = new Panel();
-        });
 
-    }
+    public void setTextPanel(){
+        panel.setLayout(new BorderLayout());
 
-    public void paint(Graphics g) {
-        System.out.println("Got text: "+ TextField.getText());
-        g.drawString(TextField.getText(), panel.getWidth()/5, panel.getHeight()/2);
+        Scrollbar scVert = new Scrollbar(Scrollbar.VERTICAL,1000,0,0,2000);
+        Scrollbar scHor = new Scrollbar(Scrollbar.HORIZONTAL,1000,0,0,2000);
+
+        TextField textField = new TextField();
+        textField.setText("Java");
+
+
+        panel.add(scVert, BorderLayout.WEST);
+        panel.add(scHor, BorderLayout.SOUTH);
+        panel.add(textField, BorderLayout.NORTH);
+        panel.add(new DrawPanel().getDrawPanel(), BorderLayout.CENTER);
     }
 }
 

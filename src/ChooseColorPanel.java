@@ -49,7 +49,7 @@ class ChooseColorPanel{
         TextVariant.add(fromTextPanel);
 
         Panel NamesVariant = new Panel();
-        NamesVariant.setLayout(new GridLayout(2,0));
+        NamesVariant.setLayout(new GridLayout(2, 0));
         NamesVariant.add(BGColor);
         NamesVariant.add(fontName);
 

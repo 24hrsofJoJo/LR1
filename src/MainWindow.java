@@ -55,9 +55,12 @@ public class MainWindow {
         ChooseFontPanel.createChooseFontPanel();
         ChooseColorPanel.createChooseColorPanel();
 
+
         main_window.add(ChooseColorPanel.getChooseColorPanel());
         main_window.add(ChooseFontPanel.getFontPanel());
-        main_window.add(TextPanel.getGraph());
+        TextPanel a = new TextPanel();
+        a.setTextPanel();
+        main_window.add(a.getThird());
 
         main_window.setVisible(true);
     }

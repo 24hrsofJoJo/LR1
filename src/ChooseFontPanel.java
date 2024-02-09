@@ -10,10 +10,28 @@ import java.awt.*;
  */
 public class ChooseFontPanel {
 
-
-    //fontName, fontSize, fontAngle - private fields that update when user use ChooseFontPanel
+    /**
+     * Private field that updates font family of TextPanel (default - Agency FB)
+     * @see TextPanel
+     * @see #fontSize
+     * @see #fontAngle
+     */
     private static String fontName = "Agency FB";
+
+    /**
+     * Private field that updates font size of TextPanel
+     * @see TextPanel
+     * @see #fontName
+     * @see #fontAngle
+     */
     private static int fontSize = 12;
+
+    /**
+     * fontAngle - private field that updates font angle (Plain, Bold, Italic) of TextPanel
+     * @see TextPanel
+     * @see #fontName
+     * @see #fontSize
+     */
     private static int fontAngle = 0;
 
     private static Panel chooseFontPanel;
@@ -30,6 +48,9 @@ public class ChooseFontPanel {
 
     public static Panel getFontPanel(){
         return chooseFontPanel;
+    }
+    public static List[] getFontLists(){
+        return new List[] {fontList,fontTypeList,fontSizeList,};
     }
 
     public static Font getFont(){
