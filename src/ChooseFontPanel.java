@@ -49,6 +49,9 @@ public class ChooseFontPanel {
     public static Panel getFontPanel(){
         return chooseFontPanel;
     }
+    public static List[] getFontLists(){
+        return new List[] {fontList,fontTypeList,fontSizeList,};
+    }
 
     public static Font getFont(){
         return new Font(fontName, fontAngle, fontSize);
