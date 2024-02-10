@@ -26,6 +26,7 @@ class ChooseColorPanel {
     private static int choice = 0;
     private static int chosenCheckbox = 0;
     static {
+
         int i = 0;
         for (Field f : Color.class.getFields()) {
             if (f.getType() == Color.class) {
@@ -44,6 +45,7 @@ class ChooseColorPanel {
         }
         for (int j=0; j<arr.size();j++)
             ColorArray[j] = arr.get(j);
+        ColorList.select(4);
 
     }
     public static Choice getColorList(){
@@ -60,12 +62,12 @@ class ChooseColorPanel {
     }
 
     /**
-     * @return An array containing 2 panels with buttons and checkboxes that allow you to customize the logic of the ColorList
+     * @return Panel with buttons and checkboxes that allow you to customize the logic of the ColorList
      * @see #createChooseColorPanel()
      * @see #createColorChoosePanel()
      * @see Panel
      */
-    private static Panel[] createChooseWorkPanel(){
+    private static Panel createChooseWorkPanel(){
 
         Button textColor = new Button("Text Color");
         textColor.addActionListener(e -> {
@@ -95,20 +97,16 @@ class ChooseColorPanel {
             DrawPanel.Text = TextPanel.textField.getText();
         });
 
-        Panel TextVariant = new Panel();
-        TextVariant.setLayout(new GridLayout(2,0));
-        TextVariant.add(textColor);
-        TextVariant.add(fromTextPanel);
+        Panel buttons = new Panel();
+        buttons.setLayout(new GridLayout(2,2));
 
-        Panel NamesVariant = new Panel();
-        NamesVariant.setLayout(new GridLayout(2, 0));
-        NamesVariant.add(BGColor);
-        NamesVariant.add(fontName);
+        buttons.add(textColor);
+        buttons.add(BGColor);
+        buttons.add(fromTextPanel);
+        buttons.add(fontName);
 
-        Panel[] arr = new Panel[2];
-        arr[0] = TextVariant;
-        arr[1] = NamesVariant;
-        return arr;
+        return buttons;
+
     }
 
     /**
@@ -119,8 +117,8 @@ class ChooseColorPanel {
      */
     private static Panel createColorChoosePanel(){
 
-        Panel ChooseColor = new Panel();
-        ChooseColor.setLayout(new GridLayout(3,0));
+        Panel ChooseColorPan = new Panel();
+        ChooseColorPan.setLayout(new GridLayout(1,3));
 
         ColorList.addItemListener(e->{
             if (choice==0)
@@ -130,11 +128,20 @@ class ChooseColorPanel {
         });
 
         Panel voidPanel = new Panel();
+
         ColorOf = new Label((choice==0)?"Text Color":"BG Color", Label.CENTER);
+        Panel ChooseColor = new Panel();
+        ChooseColor.setLayout(new GridLayout(3,1));
+
         ChooseColor.add(ColorOf);
         ChooseColor.add(ColorList);
         ChooseColor.add(voidPanel);
-        return ChooseColor;
+
+        ChooseColorPan.add(voidPanel1);
+        ChooseColorPan.add(ChooseColor);
+        ChooseColorPan.add(voidPanel2);
+
+        return ChooseColorPan;
     }
     public static Panel getChooseColorPanel(){
         return chooseColorPanel;
@@ -148,14 +155,13 @@ class ChooseColorPanel {
      * @see Panel
      */
     public static void createChooseColorPanel() {
-        chooseColorPanel.setLayout(new GridLayout(0,5));
+        chooseColorPanel.setLayout(new GridLayout(0,2));
 
-        Panel[] arr = createChooseWorkPanel();
-        chooseColorPanel.add(arr[0]);
-        chooseColorPanel.add(arr[1]);
-        chooseColorPanel.add(voidPanel1);
+        Panel buttons = createChooseWorkPanel();
+        chooseColorPanel.add(buttons);
+//        chooseColorPanel.add(voidPanel1);
         chooseColorPanel.add(createColorChoosePanel());
-        chooseColorPanel.add(voidPanel2);
+//        chooseColorPanel.add(voidPanel2);
         chooseColorPanel.setBackground(Color.green);
     }
 }

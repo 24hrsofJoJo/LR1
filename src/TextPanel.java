@@ -15,8 +15,8 @@ class DrawPanel extends Panel {
     public static Color BGColor = Color.CYAN;
     public static Color TextColor = Color.black;
     public static String Text = "Java";
-    public static int x = 75;
-    public static int y = 30;
+    public static int x = MainWindow.getWidth()/2 + MainWindow.getWidth()/8;
+    public static int y = MainWindow.getHeight()/6 + MainWindow.getHeight()/20;
 
     public Panel getDrawPanel(){
         return this;
@@ -56,7 +56,7 @@ class DrawPanel extends Panel {
         g.fillRect(0,0,MainWindow.getWidth(),MainWindow.getHeight()/3);
         g.setColor(TextColor);
         g.setFont(ChooseFontPanel.getFont());
-        g.drawString(Text,x,y);
+        g.drawString(Text,MainWindow.getWidth()-x,MainWindow.getWidth()/3-y);
     }
 }
 
@@ -85,8 +85,10 @@ class TextPanel{
     public static void createTextPanel(){
         panel.setLayout(new BorderLayout());
 
-        scVert = new Scrollbar(Scrollbar.VERTICAL,100,0,0,300);
-        scHor = new Scrollbar(Scrollbar.HORIZONTAL,0,0,0,600);
+        scVert = new Scrollbar(Scrollbar.VERTICAL,MainWindow.getHeight()/6 + MainWindow.getHeight()/20,0,
+                0,MainWindow.getHeight()/3+MainWindow.getHeight()*7/60);
+        scHor = new Scrollbar(Scrollbar.HORIZONTAL,MainWindow.getWidth()/2 + MainWindow.getWidth()/8,
+                0,0,MainWindow.getWidth()+MainWindow.getWidth()/8*3);
 
         scVert.addAdjustmentListener(e-> DrawPanel.y = scVert.getValue());
         scHor.addAdjustmentListener(e-> DrawPanel.x = scHor.getValue());
