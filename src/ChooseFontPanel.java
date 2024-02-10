@@ -92,7 +92,11 @@ public class ChooseFontPanel {
             fontList.add(item);
 
         fontList.select(0);
-        fontList.addActionListener(e -> fontName = fontList.getSelectedItem());
+        fontList.addActionListener(e -> {
+            fontName = fontList.getSelectedItem();
+            if (ChooseColorPanel.getChosenCheckbox()==1)
+                DrawPanel.Text = fontName;
+        });
 
         fontTypeList = new List(3,false);
         fontTypeList.add("Plain");
