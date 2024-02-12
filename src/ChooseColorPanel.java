@@ -158,10 +158,9 @@ class ChooseColorPanel {
         chooseColorPanel.setLayout(new GridLayout(0,2));
 
         Panel buttons = createChooseWorkPanel();
+
         chooseColorPanel.add(buttons);
-//        chooseColorPanel.add(voidPanel1);
         chooseColorPanel.add(createColorChoosePanel());
-//        chooseColorPanel.add(voidPanel2);
         chooseColorPanel.setBackground(Color.green);
     }
 }
